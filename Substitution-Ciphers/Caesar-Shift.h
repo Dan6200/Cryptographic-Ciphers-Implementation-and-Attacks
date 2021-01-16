@@ -18,7 +18,7 @@ public:
     const char* getCipherText() {
         int i=0;
         for(; i < charCount; i++) 
-            plaintext[i] = (plaintext[i] == ' ') ? plaintext[i] :
+            plaintext[i] = (!isalpha(plaintext[i])) ? plaintext[i] :
                 char((plaintext[i] + 23) % 26 + 65);
         plaintext[i] = '\0';
         return (const char*) plaintext;
