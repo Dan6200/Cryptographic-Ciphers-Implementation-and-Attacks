@@ -6,7 +6,7 @@ class Caesar {
     int charCount;
 
 public:
-    Caesar(): plaintext(new char[100]) {}
+    Caesar(): plaintext(new char[100000]) {}
 
     void setPlainText(const char* text) {
         int i=0;
