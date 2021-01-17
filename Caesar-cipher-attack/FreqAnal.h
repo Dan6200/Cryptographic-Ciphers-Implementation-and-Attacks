@@ -41,23 +41,24 @@ public:
         parseCipher();
     }
 
-    char* decryptCipher() {
+    const char* decryptCipher() {
         if (highestFreq() == cipherText.end())
-            return FAILURE;
-        int shiftKey = *highestFreq() - 'E';
+            return static_cast<const char*>(FAILURE);
+        int shiftKey = highestFreq()->first - 'E';
         // Erase element
         cipherText.erase(highestFreq());
-        ifstream cipher;
+        std::ifstream cipher;
         cipher.open("cipher-text.txt");
         char letter;
         char decryptText[100000];
+        int i = 0;
         while (cipher.get(letter))
         {
             shiftBy(letter, shiftKey);
-            decryptText[i] = letter;
+            decryptText[i++] = letter;
         }
         cipher.close();
-        return decryptText;
+        return static_cast<const char*>(decryptText);
     }
 };
 
