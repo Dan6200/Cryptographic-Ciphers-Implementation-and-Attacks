@@ -5,6 +5,7 @@
 
 class LetterFreq {
     char FAILURE[10] = "TERMINATE";
+    char decryptText[100000];
     char mostFreqLetters [26] = {
         'E', 'T', 'A', 'O', 'I', 'N', 'S', 'R', 'H', 'D', 'L', 'U', 'C', 'M', 'F', 'Y', 'W',
         'G', 'P', 'B', 'V', 'K', 'X', 'Q', 'J', 'Z'};
@@ -15,7 +16,8 @@ class LetterFreq {
     
     std::map<char,int>::iterator highestFreq() {
         return std::max_element(cipherText.begin(), cipherText.end(),
-        [] (auto a, auto b) { return a->second < b->second; });
+        [] (auto a, auto b) { 
+            if (isalpha) return a.second < b.second; });
     }
 
     void shiftBy(char& a, int key) {
@@ -50,7 +52,6 @@ public:
         std::ifstream cipher;
         cipher.open("cipher-text.txt");
         char letter;
-        char decryptText[100000];
         int i = 0;
         while (cipher.get(letter))
         {
