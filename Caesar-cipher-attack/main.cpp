@@ -12,9 +12,10 @@ int main() {
         plaintext = cipher.decryptCipher();
         if (strcmp(plaintext,"TERMINATE"))
             break;
-        std::cout << cipher.decryptCipher() << '\n' << std::endl;
+        std::cout << (const char*)plaintext << '\n' << std::endl;
         std::cout << "Quit decryption?(press \"Y\" to quit)\n";
-        char res[100];
+        char res;
+        cin >> res;
         if (toupper(res) == 'Y')
             quit = true;
         else quit = false;

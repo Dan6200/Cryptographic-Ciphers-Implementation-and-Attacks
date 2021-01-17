@@ -39,7 +39,9 @@ public:
         parseCipher();
     }
 
-    const char* decryptCipher() {
+    char* decryptCipher() {
+        if (highestFreq == cipherText)
+            return "TERMINATE";
         int shiftKey = *highestFreq() - 'E';
         // Erase element
         cipherText.erase(highestFreq());
@@ -53,7 +55,7 @@ public:
             decryptText[i] = letter;
         }
         cipher.close();
-        return static_cast<const char*>(decryptText);
+        return decryptText;
     }
 };
 
