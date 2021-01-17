@@ -11,7 +11,10 @@ int main() {
         std::cout << "Attempt " << count+1 << std::endl;
         const char* plaintext = cipher.decryptCipher();
         if (!strcmp(plaintext,"TERMINATE"))
+        {
+            count = 26;
             break;
+        }
         std::cout << plaintext << '\n' << std::endl;
         std::cout << "Quit decryption? Quit if successful(press \"q\" to quit, any other key to continue)\n";
         char res;
@@ -23,7 +26,7 @@ int main() {
         count++;
     }
     if (count == 26) {
-        std::cout << "Could not decrypt text" << std::endl;
+        std::cout << "\nCould not decrypt text\n" << std::endl;
     }
     else
         std::cout << "\nSuccessfully decrypted!\n" << std::endl;

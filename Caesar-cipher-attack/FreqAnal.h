@@ -40,7 +40,7 @@ public:
     }
 
     const char* decryptCipher() {
-        while(!isalpha(highestFreq()->first)) {
+        while(highestFreq() != cipherText.end() && !isalpha(highestFreq()->first)) {
             // Erase element
             cipherText.erase(highestFreq());
         }
