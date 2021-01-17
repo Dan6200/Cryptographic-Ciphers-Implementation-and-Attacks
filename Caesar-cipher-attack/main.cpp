@@ -13,10 +13,10 @@ int main() {
         if (!strcmp(plaintext,"TERMINATE"))
             break;
         std::cout << plaintext << '\n' << std::endl;
-        std::cout << "Quit decryption?(press \"Y\" to quit)\n";
+        std::cout << "Quit decryption? Quit if successful(press \"q\" to quit, any other key to continue)\n";
         char res;
-        std::cin >> res;
-        if (toupper(res) == 'Y')
+        std::cin.get(res);
+        if (toupper(res) == 'Q')
             quit = true;
         else quit = false;
         
@@ -25,4 +25,6 @@ int main() {
     if (count == 26) {
         std::cout << "Could not decrypt text" << std::endl;
     }
+    else
+        std::cout << "\nSuccessfully decrypted!\n" << std::endl;
 }
