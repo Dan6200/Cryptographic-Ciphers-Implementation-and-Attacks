@@ -4,7 +4,7 @@
 #include <algorithm>
 
 class LetterFreq {
-    char FAILURE[10] = "TERMINATE";
+    const char FAILURE[10] = "TERMINATE";
     char decryptText[100000];
     
     int inputSize;
