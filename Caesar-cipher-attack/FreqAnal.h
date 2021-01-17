@@ -1,9 +1,11 @@
-#include <ifstream>
+#include <fstream>
 #include <map>
+#include <cctype>
 #include <algorithm>
 
 class LetterFreq {
-    char mostFreqLetters [] = {
+    char [] FAILURE = "TERMINATE";
+    char mostFreqLetters [26] = {
         'E', 'T', 'A', 'O', 'I', 'N', 'S', 'R', 'H', 'D', 'L', 'U', 'C', 'M', 'F', 'Y', 'W',
         'G', 'P', 'B', 'V', 'K', 'X', 'Q', 'J', 'Z'};
     
@@ -13,11 +15,11 @@ class LetterFreq {
     
     void highestFreq() {
         return std::max_element(cipherText.begin(), cipherText.end(),
-        [] (auto a, auto b) { a->second < b->second});
+        [] (auto a, auto b) { return a->second < b->second; });
     }
 
     void shiftBy(char& a, int key) {
-        a = (!isaplha(a)) ? a : char((a - key) % 26 + 65);
+        a = (!isalpha(a)) ? a : char((a - key) % 26 + 65);
     }
 
     void parseCipher() 
@@ -40,8 +42,8 @@ public:
     }
 
     char* decryptCipher() {
-        if (highestFreq == cipherText)
-            return "TERMINATE";
+        if (highestFreq() == cipherText)
+            return FAILURE;
         int shiftKey = *highestFreq() - 'E';
         // Erase element
         cipherText.erase(highestFreq());

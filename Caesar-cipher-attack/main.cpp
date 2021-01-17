@@ -1,5 +1,6 @@
 #include "FreqAnal.h"
 #include <iostream>
+#include <cstring>
 
 int main() {
     LetterFreq cipher;
