@@ -12,8 +12,8 @@ class LetterFreq {
     std::map<char,int> cipherText;
     
     void highestFreq() {
-        return *std::max_element(cipherText.begin(), cipherText.end(),
-        [] (auto a, auto b) { return a->second < b->second});
+        return std::max_element(cipherText.begin(), cipherText.end(),
+        [] (auto a, auto b) { a->second < b->second});
     }
 
     void shiftBy(char& a, int key) {
@@ -34,13 +34,15 @@ class LetterFreq {
         cipher.close();
     }
 
-    
-    
-
 public:
-    const char* decryptCipher(int idx) {
+    LetterFreq() {
         parseCipher();
-        int shiftKey = highestFreq() - 'E';
+    }
+
+    const char* decryptCipher() {
+        int shiftKey = *highestFreq() - 'E';
+        // Erase element
+        cipherText.erase(highestFreq());
         ifstream cipher;
         cipher.open("cipher-text.txt");
         char letter;
