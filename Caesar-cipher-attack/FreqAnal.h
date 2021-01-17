@@ -4,7 +4,7 @@
 #include <algorithm>
 
 class LetterFreq {
-    char [] FAILURE = "TERMINATE";
+    char FAILURE[10] = "TERMINATE";
     char mostFreqLetters [26] = {
         'E', 'T', 'A', 'O', 'I', 'N', 'S', 'R', 'H', 'D', 'L', 'U', 'C', 'M', 'F', 'Y', 'W',
         'G', 'P', 'B', 'V', 'K', 'X', 'Q', 'J', 'Z'};
@@ -13,7 +13,7 @@ class LetterFreq {
 
     std::map<char,int> cipherText;
     
-    void highestFreq() {
+    std::map<char,int>::iterator highestFreq() {
         return std::max_element(cipherText.begin(), cipherText.end(),
         [] (auto a, auto b) { return a->second < b->second; });
     }
@@ -42,7 +42,7 @@ public:
     }
 
     char* decryptCipher() {
-        if (highestFreq() == cipherText)
+        if (highestFreq() == cipherText.end())
             return FAILURE;
         int shiftKey = *highestFreq() - 'E';
         // Erase element
