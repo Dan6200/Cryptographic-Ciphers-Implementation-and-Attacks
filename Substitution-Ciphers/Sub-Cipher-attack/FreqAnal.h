@@ -2,54 +2,20 @@
 #include <map>
 #include <cctype>
 #include <algorithm>
+#include "../Caesar-cipher-attack/FreqAnal.h"
 
-class LetterFreq {
-    const char FAILURE[10] = "TERMINATE";
-    char decryptText[100000];
-    
-    int inputSize;
-
-    std::map<char,int> cipherText;
-    
-    std::map<char,int>::iterator highestFreq() {
-        return std::max_element(cipherText.begin(), cipherText.end(),
-        [] (auto a, auto b) { return a.second < b.second; });
-    }
-
-    void shiftBy(char& a, int key) {
-        a = (!isalpha(a)) ? a : char((a - key) % 26 + 65);
-    }
-
-    void parseCipher() 
-    {
-        std::ifstream cipher;
-        cipher.open("cipher-text.txt");
-        char letter;
-        while (cipher.get(letter)) {
-            if (cipherText.find(letter) == cipherText.end())
-                cipherText[letter] = 1;
-            else cipherText[letter]++;
-        }
-
-        cipher.close();
-    }
-
+class Sub_Cipher_Analsis: public Caesar_Analsis
+{
+    std::map<char,int>::iterator freqArr[1000];
 public:
-    LetterFreq() {
-        parseCipher();
-    }
-
-    const char* decryptCipher(char commnLettr) {
-        while(highestFreq() != cipherText.end() && !isalpha(highestFreq()->first)) {
-            // Erase element
+    const char* decryptCipher(char commnLettr, int& count) {
+        while (highestFreq() != cipherText.end())
+        {
+            freqArr[i++] = highestFreq();
             cipherText.erase(highestFreq());
         }
-
-        if (highestFreq() == cipherText.end())
-            return static_cast<const char*>(FAILURE);
-        int shiftKey = highestFreq()->first - commnLettr;
+        int shiftKey = freqArr[count++]->first - commnLettr;
         // Erase element
-        cipherText.erase(highestFreq());
         std::ifstream cipher;
         cipher.open("cipher-text.txt");
         char letter;
@@ -57,10 +23,15 @@ public:
         while (cipher.get(letter))
         {
             shiftBy(letter, shiftKey);
-            decryptText[i++] = letter;
+            setDecryptText(letter, i);
+            i++;
         }
         cipher.close();
-        return static_cast<const char*>(decryptText);
+        return getDecryptText();
+   }
+
+    void shiftBy(char& a, int key) {
+            a = char((a - key) % 26 + 65);
     }
 };
 

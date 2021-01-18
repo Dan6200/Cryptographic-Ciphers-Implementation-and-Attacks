@@ -3,13 +3,27 @@
 #include <cctype>
 #include <algorithm>
 
-class LetterFreq {
+class Caesar_Analsis {
     const char FAILURE[10] = "TERMINATE";
 
     char decryptText[100000];
 
+    void parseCipher() 
+    {
+        std::ifstream cipher;
+        cipher.open("cipher-text.txt");
+        char letter;
+        while (cipher.get(letter)) {
+            if (cipherText.find(letter) == cipherText.end())
+                cipherText[letter] = 1;
+            else cipherText[letter]++;
+        }
+
+        cipher.close();
+    }
+
 public:
-    LetterFreq() {
+    Caesar_Analsis() {
         parseCipher();
     }
 
@@ -57,18 +71,6 @@ public:
         a = (!isalpha(a)) ? a : char((a - key) % 26 + 65);
     }
 
-    void parseCipher() 
-    {
-        std::ifstream cipher;
-        cipher.open("cipher-text.txt");
-        char letter;
-        while (cipher.get(letter)) {
-            if (cipherText.find(letter) == cipherText.end())
-                cipherText[letter] = 1;
-            else cipherText[letter]++;
-        }
-
-        cipher.close();
-    }
+    
 };
 

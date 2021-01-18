@@ -3,13 +3,13 @@
 #include <cstring>
 
 int main() {
-    LetterFreq cipher;
-    std::cout << "Save cipher text in this directory, under the name \"cipher-text.txt\", \nRepeatedly decrypt to retrieve plaintext. Best case scenario, it takes less than 26 tries" << std::endl;
+    Caesar_Analsis attack;
+    std::cout << "Save attack text in this directory, under the name \"attack-text.txt\", \nRepeatedly decrypt to retrieve plaintext. Best case scenario, it takes less than 26 tries" << std::endl;
     int count = 0;
     char quit = false;
     while (count < 26 && !quit) {
         std::cout << "Attempt " << count+1 << std::endl;
-        const char* plaintext = cipher.decryptCipher('A');
+        const char* plaintext = attack.decryptCipher('A');
         if (!strcmp(plaintext,"TERMINATE"))
         {
             count = 26;
