@@ -10,7 +10,7 @@ public:
 
     void setPlainText(const char* text) {
         int i=0;
-        for(; i < strlen(text); i++)
+        for(; i < (int)strlen(text); i++)
             plaintext[i] = toupper(text[i]);
         charCount=i;
     }

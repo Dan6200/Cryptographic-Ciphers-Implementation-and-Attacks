@@ -39,7 +39,7 @@ public:
         parseCipher();
     }
 
-    const char* decryptCipher() {
+    const char* decryptCipher(char commnLettr) {
         while(highestFreq() != cipherText.end() && !isalpha(highestFreq()->first)) {
             // Erase element
             cipherText.erase(highestFreq());
@@ -47,7 +47,7 @@ public:
 
         if (highestFreq() == cipherText.end())
             return static_cast<const char*>(FAILURE);
-        int shiftKey = highestFreq()->first - 'E';
+        int shiftKey = highestFreq()->first - commnLettr;
         // Erase element
         cipherText.erase(highestFreq());
         std::ifstream cipher;

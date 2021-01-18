@@ -9,7 +9,7 @@ int main() {
     char quit = false;
     while (count < 26 && !quit) {
         std::cout << "Attempt " << count+1 << std::endl;
-        const char* plaintext = cipher.decryptCipher();
+        const char* plaintext = cipher.decryptCipher('A');
         if (!strcmp(plaintext,"TERMINATE"))
         {
             count = 26;
