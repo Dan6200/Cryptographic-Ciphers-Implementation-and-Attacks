@@ -13,7 +13,7 @@ public:
         for(; i < count; i++) 
         {   // Avoids negative values and other values that may cause the OS ascii handler to crash
             int sum = (plaintext[i] + Key) % KeySpace + Offset;
-            if (sum < (Offset + KeySpace) && sum > Offset)
+            if (sum <= (Offset + KeySpace) && sum >= Offset)
                 plaintext[i]  = char(sum);
         }
         plaintext[i] = '\0';
