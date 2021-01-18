@@ -28,6 +28,9 @@ int main() {
     if (count == 26) {
         std::cout << "\nCould not decrypt text\n" << std::endl;
     }
-    else
+    else {
         std::cout << "\nSuccessfully decrypted!\n" << std::endl;
+        if (count <= 1)
+            std::cout << "Cipher text is not very secure\n" << std::endl;
+    }
 }
