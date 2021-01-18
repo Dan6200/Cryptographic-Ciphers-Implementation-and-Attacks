@@ -15,6 +15,10 @@ public:
         charCount=i;
     }
 
+    char* getPlainText() { return plaintext; }
+
+    int getCount() { return charCount; }
+
     const char* getCipherText() {
         int i=0;
         for(; i < charCount; i++) 
