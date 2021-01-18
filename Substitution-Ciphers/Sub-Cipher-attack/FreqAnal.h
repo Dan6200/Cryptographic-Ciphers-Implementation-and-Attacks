@@ -40,6 +40,8 @@ public:
                 x = [(y - C) - k mod p] + C
             */
             int x, y = a;
+            // Avoid decrypting unencrypted characters
+            if (y < Offset || y > (Offset+KeySpace)) return;
             int diff = (y - Offset) - key;
             // mod p:
             if (diff < 0) diff += KeySpace;

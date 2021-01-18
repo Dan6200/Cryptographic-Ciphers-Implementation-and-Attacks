@@ -22,6 +22,7 @@ public:
         {   
             int x, y;
             x = plaintext[i];
+            if (x < Offset || x > (Offset+KeySpace)) continue;
             y = (((x - Offset) + Key) % KeySpace) + Offset;
             plaintext[i]  = char(y);
         }

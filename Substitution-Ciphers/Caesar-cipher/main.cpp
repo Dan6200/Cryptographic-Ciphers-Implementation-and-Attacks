@@ -3,12 +3,12 @@
 #include "Caesar-Shift.h"
 
 int main() {
-    char usrInput[10000];
+    char usrInput[100000];
     std::ofstream output;
     output.open("cipher-text.txt");
     Caesar cipher;
     std::cout << "Enter text to be encrypted (to quit enter \"|\" character):\n\n";
-    std::cin.get(usrInput, 10000, '|');
+    std::cin.get(usrInput, 100000, '|');
     std::cout << '\n';
     cipher.setPlainText((const char*) usrInput);
     const char* plaintext = cipher.getCipherText();
