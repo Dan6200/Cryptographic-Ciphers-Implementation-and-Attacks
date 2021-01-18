@@ -4,6 +4,9 @@
 class Caesar {
     char* plaintext;
     int charCount;
+    const int C = 65;
+    const int k = 23;
+    const int p = 26;
 
 public:
     Caesar(): plaintext(new char[100000]) {}
@@ -21,11 +24,14 @@ public:
 
     const char* getCipherText() {
         int i=0;
-        int C = 65;
-        int k = 23;
-        int p = 26;
         int x, y;
-        /* y = [(x - C) + k mod p] + C], C = 'A' */
+        /* y = [(x - C) + k mod p] + C, 
+            offset - C = 'A'
+            key - k = 23,
+            keyspace - p = 26,
+            x - plain text
+            y - cipher text
+        */
         for(; i < charCount; i++) 
         {
             x = plaintext[i];

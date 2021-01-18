@@ -25,6 +25,9 @@ int main() {
     if (!quit) {
         std::cout << "\nCould not decrypt text\n" << std::endl;
     }
-    else
-        std::cout << "\nSuccessfully decrypted!\n" << std::endl;
+    else {
+        std::cout << "\nSuccessfully decrypted!" << std::endl;
+        if (count <= 1) 
+            std::cout << "Cipher text is not very secure\n" << std::endl;
+    }
 }

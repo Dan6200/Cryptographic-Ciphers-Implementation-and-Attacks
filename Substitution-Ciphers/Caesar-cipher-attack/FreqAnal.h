@@ -38,7 +38,7 @@ public:
         /* k === y - x mod p */
         int key = y - x; 
         if (key < 0)
-            key += 26;
+            key += KeySpace;
         return key;
     }
 

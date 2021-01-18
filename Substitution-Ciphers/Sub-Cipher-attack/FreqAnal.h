@@ -1,7 +1,4 @@
 #include <fstream>
-#include <map>
-#include <cctype>
-#include <algorithm>
 #include "../Caesar-cipher-attack/FreqAnal.h"
 
 class Sub_Cipher_Analsis: public Caesar_Analsis
@@ -14,7 +11,7 @@ public:
     const char* decryptCipher(int& count) {
         int shiftKey;
         if (count < 27) 
-            shiftKey = (highestFreq()->first - freqChars[count]) % KeySpace + Offset;
+            shiftKey = getKey(highestFreq()->first, freqChars[count]);
         else {
             return handleFailure();
         }
@@ -33,9 +30,21 @@ public:
    }
 
     void shiftBy(char& a, int key) {
-            int sum = (a - key) % KeySpace + Offset;
-            if (sum <= (KeySpace + Offset) && sum >= Offset)
-                a = char(sum);
+            /* 
+                key - k,
+                KeySpace - p,
+                Offset - C,
+                plain text - x,
+                cipher text - y.
+
+                x = [(y - C) - k mod p] + C
+            */
+            int x, y = a;
+            int diff = (y - Offset) - key;
+            // mod p:
+            if (diff < 0) diff += KeySpace;
+            x = diff + Offset;
+            a = char(x);
     }
 };
 
