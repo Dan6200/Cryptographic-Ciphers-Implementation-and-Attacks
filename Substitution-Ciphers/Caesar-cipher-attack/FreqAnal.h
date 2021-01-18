@@ -31,6 +31,13 @@ public:
 
     std::map<char,int> cipherText;
 
+    int getKey(int y, int x) {
+        int key = (y - x) % 26 + 65; 
+        if (key < 0)
+            key += 26;
+        return key;
+    }
+
     const char* decryptCipher(char commnLettr) {
         while(highestFreq() != cipherText.end() && !isalpha(highestFreq()->first)) {
             // Erase element
@@ -39,7 +46,7 @@ public:
 
         if (highestFreq() == cipherText.end())
             return handleFailure();
-        int shiftKey = highestFreq()->first - commnLettr;
+        int shiftKey = getKey(highestFreq()->first, commnLettr);
         // Erase element
         cipherText.erase(highestFreq());
         std::ifstream cipher;
@@ -68,7 +75,9 @@ public:
     }
 
     void shiftBy(char& a, int key) {
-        a = (!isalpha(a)) ? a : char((a - key) % 26 + 65);
+        int diff = (a - key) % 26 + 65;
+        if (diff < 0) diff += 26;
+        a = (!isalpha(a))? a : char(diff);
     }
 
     
