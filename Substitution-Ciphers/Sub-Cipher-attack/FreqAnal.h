@@ -7,8 +7,10 @@
 class Sub_Cipher_Analsis: public Caesar_Analsis
 {
     std::map<char,int>::iterator freqArr[1000];
+    char freqChars[27] = {' ', 'E', 'T', 'A', '0', 'I', 'N', 'S', 'R', 'H', 'D', 'L', 'U', 'C', 'M', 'F', 'Y', 'W', 'G', 'P', 'B', 'V', 'K', 'X', 'Q', 'J', 'Z'};
+    int charIdx =0;
 public:
-    const char* decryptCipher(char commnLettr, int& count) {
+    const char* decryptCipher(int& count) {
         int i=0;
         while (highestFreq() != cipherText.end())
         {
@@ -16,9 +18,11 @@ public:
             cipherText.erase(highestFreq());
         }
         int shiftKey=0;
-        if (count < 26) 
-            int shiftKey = freqArr[count++]->first - commnLettr;
-        else return handleFailure();
+        if (count < 27) 
+            shiftKey = freqArr[0]->first - freqChars[count];
+        else {
+            return handleFailure();
+        }
         std::ifstream cipher;
         cipher.open("cipher-text.txt");
         char letter;
@@ -34,8 +38,8 @@ public:
    }
 
     void shiftBy(char& a, int key) {
-            const int KeySpace = 26;
-            const int Offset = 65;
+            const int KeySpace = 93;
+            const int Offset = 32;
             int sum = (a - key) % KeySpace + Offset;
             if (sum < (KeySpace + Offset) && sum > Offset)
                 a = char((a - key) % KeySpace + Offset);

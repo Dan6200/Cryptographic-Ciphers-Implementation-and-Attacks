@@ -7,8 +7,8 @@ public:
         char* plaintext = getPlainText();
         int count = getCount();
         int i=0;
-        const int KeySpace = 26;
-        const int Offset = 65;
+        const int KeySpace = 93;
+        const int Offset = 32;
         const int Key = 17;
         for(; i < count; i++) 
         {   // Avoids negative values and other values that may cause the OS ascii handler to crash
