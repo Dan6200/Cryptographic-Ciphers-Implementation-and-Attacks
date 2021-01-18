@@ -22,6 +22,9 @@ class Caesar_Analsis {
         cipher.close();
     }
 
+    const int KeySpace = 26;
+    const int Offset = 65;
+
 public:
     Caesar_Analsis() {
         parseCipher();
@@ -32,7 +35,8 @@ public:
     std::map<char,int> cipherText;
 
     int getKey(int y, int x) {
-        int key = (y - x) % 26 + 65; 
+        /* k === y - x mod p */
+        int key = y - x; 
         if (key < 0)
             key += 26;
         return key;
@@ -75,11 +79,26 @@ public:
     }
 
     void shiftBy(char& a, int key) {
-        int diff = (a - key) % 26 + 65;
-        if (diff < 0) diff += 26;
-        a = (!isalpha(a))? a : char(diff);
+        /*
+            k = key,
+            p = KeySpace,
+            C = Offset,
+            x = plain text,
+            y = cipher text
+
+            x = [(y - C) - k mod p] + C
+        */
+        if (isalpha(a))
+        {
+            int y = a;
+            int x;
+            int diff = (y - Offset) - key; 
+            // mod p:
+            if (diff < 0) diff += KeySpace;
+            x = diff + Offset;
+            a = char(x);
+        }
     }
 
-    
 };
 

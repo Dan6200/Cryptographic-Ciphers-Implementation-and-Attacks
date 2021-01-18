@@ -21,9 +21,17 @@ public:
 
     const char* getCipherText() {
         int i=0;
+        int C = 65;
+        int k = 23;
+        int p = 26;
+        int x, y;
+        /* y = [(x - C) + k mod p] + C], C = 'A' */
         for(; i < charCount; i++) 
-            plaintext[i] = (!isalpha(plaintext[i])) ? plaintext[i] :
-                char((plaintext[i] + 23) % 26 + 65);
+        {
+            x = plaintext[i];
+            y = (!isalpha(x)) ? x : (((x - C) + k) % p) + C;
+            plaintext[i] = char(y);
+        }
         plaintext[i] = '\0';
         return (const char*) plaintext;
     }
