@@ -13,7 +13,7 @@ int main() {
     cipher.setPlainText((const char*) usrInput);
     const char* plaintext = cipher.getCipherText();
     std::cout << plaintext << '\n' << std::endl;
-    std::cout << "Ciphertext generates an output file, copy it to the Caesar-cipher-attack directory to decrypt\n" << std::endl;
+    std::cout << "Ciphertext generates an output file, \"cipher-text.txt\". Copy it to the Caesar-cipher-attack directory to decrypt\n" << std::endl;
     output << plaintext << std::endl;
 }
 
