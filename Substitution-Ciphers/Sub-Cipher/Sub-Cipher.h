@@ -7,8 +7,15 @@ public:
         char* plaintext = getPlainText();
         int count = getCount();
         int i=0;
+        const int KeySpace = 26;
+        const int Offset = 65;
+        const int Key = 17;
         for(; i < count; i++) 
-            plaintext[i] = char((plaintext[i] + 17) % 26 + 65);
+        {   // Avoids negative values and other values that may cause the OS ascii handler to crash
+            int sum = (plaintext[i] + Key) % KeySpace + Offset;
+            if (sum < (Offset + KeySpace) && sum > Offset)
+                plaintext[i]  = char(sum);
+        }
         plaintext[i] = '\0';
         return (const char*) plaintext;
     }

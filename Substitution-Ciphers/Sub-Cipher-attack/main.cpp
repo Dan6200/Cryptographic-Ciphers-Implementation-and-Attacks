@@ -9,7 +9,7 @@ int main() {
     char quit = false;
     while (!quit) {
         std::cout << "Attempt " << count+1 << std::endl;
-        const char* plaintext = attack.decryptCipher('A');
+        const char* plaintext = attack.decryptCipher(' ', count);
         if (!strcmp(plaintext,"TERMINATE"))
             break;
         std::cout << plaintext << '\n' << std::endl;
