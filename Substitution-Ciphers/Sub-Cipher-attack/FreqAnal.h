@@ -1,7 +1,7 @@
 #include <fstream>
 #include "../Caesar-cipher-attack/FreqAnal.h"
 
-class Sub_Cipher_Analsis: public Caesar_Analsis
+class Shift_Cipher_Analsis: public Caesar_Analsis
 {
     char freqChars[27] = {' ', 'E', 'T', 'A', '0', 'I', 'N', 'S', 'R', 'H', 'D', 'L', 'U', 'C', 'M', 'F', 'Y', 'W', 'G', 'P', 'B', 'V', 'K', 'X', 'Q', 'J', 'Z'};
     int charIdx =0;
