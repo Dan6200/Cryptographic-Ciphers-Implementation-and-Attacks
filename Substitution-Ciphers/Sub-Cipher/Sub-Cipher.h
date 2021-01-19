@@ -1,6 +1,6 @@
 #include "../Caesar-cipher/Caesar-Shift.h"
 
-class Sub_Ciph: public Caesar
+class Shift_Ciph: public Caesar
 {
     const int KeySpace = 93;
     const int Offset = 32;
