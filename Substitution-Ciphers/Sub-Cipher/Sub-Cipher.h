@@ -4,7 +4,7 @@ class Sub_Ciph: public Caesar
 {
     const int KeySpace = 93;
     const int Offset = 32;
-    const int Key = 17;
+    const int Key = 59;
 
 public:
     const char* getCipherText() {
