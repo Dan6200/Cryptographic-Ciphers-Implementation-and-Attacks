@@ -12,11 +12,11 @@ public:
         int count = getCount();
         int i=0;
         /* y = [(x - C) + k mod p] + C, 
-            Offset = C =  ' '
-            Key = k = 17,
-            KeySpace = p = 26.
-            x = plain text,
-            y = cipher text.
+            Offset => C =  ' '
+            Key => k = 17,
+            KeySpace => m = 26.
+            x => plain text,
+            y => cipher text.
         */
         for(; i < count; i++) 
         {   
