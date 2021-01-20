@@ -35,7 +35,7 @@ public:
     std::map<char,int> cipherText;
 
     int getKey(int y, int x) {
-        /* k === y - x mod p */
+        /* k === y - x mod m */
         int key = y - x; 
         if (key < 0)
             key += KeySpace;
@@ -81,19 +81,19 @@ public:
     void shiftBy(char& a, int key) {
         /*
             k = key,
-            p = KeySpace,
+            m = KeySpace,
             C = Offset,
             x = plain text,
             y = cipher text
 
-            x = [(y - C) - k mod p] + C
+            x = [(y - C) - k mod m] + C
         */
         if (isalpha(a))
         {
             int y = a;
             int x;
             int diff = (y - Offset) - key; 
-            // mod p:
+            // mod m:
             if (diff < 0) diff += KeySpace;
             x = diff + Offset;
             a = char(x);
