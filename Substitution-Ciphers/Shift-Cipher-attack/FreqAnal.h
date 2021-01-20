@@ -32,12 +32,12 @@ public:
     void shiftBy(char& a, int key) {
             /* 
                 key - k,
-                KeySpace - p,
+                KeySpace - m,
                 Offset - C,
                 plain text - x,
                 cipher text - y.
 
-                x = [(y - C) - k mod p] + C
+                x = [(y - C) - k mod m] + C
             */
             int x, y = a;
             // Avoid decrypting unencrypted characters
