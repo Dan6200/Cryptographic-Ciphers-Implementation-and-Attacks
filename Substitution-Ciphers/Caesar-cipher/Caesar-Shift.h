@@ -6,7 +6,7 @@ class Caesar {
     int charCount;
     const int C = 65;
     const int k = 23;
-    const int p = 26;
+    const int m = 26;
 
 public:
     Caesar(): plaintext(new char[100000]) {}
@@ -28,14 +28,14 @@ public:
         /* y = [(x - C) + k mod p] + C, 
             offset - C = 'A'
             key - k = 23,
-            keyspace - p = 26,
+            keyspace - m = 26,
             x - plain text
             y - cipher text
         */
         for(; i < charCount; i++) 
         {
             x = plaintext[i];
-            y = (!isalpha(x)) ? x : (((x - C) + k) % p) + C;
+            y = (!isalpha(x)) ? x : (((x - C) + k) % m) + C;
             plaintext[i] = char(y);
         }
         plaintext[i] = '\0';
